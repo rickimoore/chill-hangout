@@ -18,6 +18,7 @@
         },
         methods: {
             moveToHangout: function () {
+                if(!this.person.name) return;
                 this.$emit('moveToHangout', this.person)
             }
         }
