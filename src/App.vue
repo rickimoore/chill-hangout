@@ -1,17 +1,29 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ChatBox v-bind:user="user" v-if="user" />
+    <Register v-on:moveToHangout="setUser" v-if="!user"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ChatBox from './components/chat'
+import Register from './components/register'
 
 export default {
   name: 'App',
+  data () {
+    return {
+      user: ''
+    }
+  },
   components: {
-    HelloWorld
+    ChatBox, Register
+  },
+  methods: {
+    setUser: function (data) {
+      this.user = data;
+    }
   }
 }
 </script>
