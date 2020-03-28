@@ -47,6 +47,7 @@ export default {
   },
   created() {
     this.socket = io(process.env.VUE_APP_SOCKET);
+    console.log(process.env.VUE_APP_SOCKET);
     window.addEventListener('beforeunload', this.beforePageDestroyed)
   },
   mounted() {
