@@ -46,12 +46,13 @@ export default {
     }
   },
   created() {
-    this.socket = io("http://localhost:3000");
+    this.socket = io(process.env.VUE_APP_SOCKET);
     window.addEventListener('beforeunload', this.beforePageDestroyed)
   },
   mounted() {
     this.socket.on('introduce', data => {
       this.board.push({
+
         isIntro: true,
         name: data.name,
       })
