@@ -150,4 +150,10 @@ export default {
   .center {
     text-align: center;
   }
+
+@media (max-width: 600px) {
+  .chat-content {
+    width: 80%;
+  }
+}
 </style>
