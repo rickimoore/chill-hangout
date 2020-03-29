@@ -14,7 +14,7 @@
         </template>
       </p>
     </div>
-    <input v-model="message" placeholder="whatsApp?..." type="text">
+    <input v-model="message" v-on:keyup.enter="submit" placeholder="whatsApp?..." type="text">
     <button v-on:click="submit">Submit</button>
   </div>
 </template>
