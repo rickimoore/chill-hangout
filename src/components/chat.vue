@@ -1,5 +1,6 @@
 <template>
   <div class="window">
+    <chatHeader/>
     <div id="content" class="chat-content">
       <div class="chat-window">
         <p class="text" v-bind:class="{'center': message.isIntro || message.isOutro}" v-for="(message, index) in board" v-bind:key="index">
@@ -10,7 +11,7 @@
             <span>** {{ message.name }} has left the chat **</span>
           </template>
           <template v-if="!message.isIntro">
-            <span>{{ message.sender }}: {{ message.data }}</span>
+            <span><span v-bind:class="{'highlight': user.name === message.sender}">{{ message.sender }}</span>: {{ message.data }}</span>
           </template>
         </p>
       </div>
@@ -29,8 +30,12 @@
 
 <script>
 import io from "socket.io-client";
+import chatHeader from './chat-header';
 export default {
   name: "ChatBox",
+  components: {
+    chatHeader
+  },
   props: {
     user: Object
   },
@@ -153,6 +158,9 @@ export default {
   outline: none;
   border: none;
   border-radius: 5px;
+}
+.highlight{
+  color: #e77471;
 }
   .text{
     margin: 5px;
