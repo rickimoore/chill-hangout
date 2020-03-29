@@ -15,7 +15,7 @@
         </p>
       </div>
     </div>
-    <div class="input-group">
+    <div class="input-group animated" v-bind:class="{'shake': isError}">
       <input
         v-model="message"
         v-on:keyup.enter="submit"
@@ -38,11 +38,22 @@ export default {
     return {
       socket: {},
       board: [],
-      message: ""
+      message: "",
+      isError: false
     };
   },
   methods: {
+    toggleAnimation: function () {
+      this.isError = true;
+      setTimeout(() => {
+        this.isError = false;
+      }, 1000);
+    },
     submit: function() {
+      if(!this.message){
+        this.toggleAnimation();
+        return;
+      }
       this.socket.emit("message", {
         sender: this.user.name,
         data: this.message
