@@ -1,6 +1,6 @@
 <template>
   <div class="window">
-    <chatHeader/>
+    <chatHeader v-bind:socket="socket"/>
     <div id="content" class="chat-content">
       <div class="chat-window">
         <p class="text" v-bind:class="{'center': message.isIntro || message.isOutro}" v-for="(message, index) in board" v-bind:key="index">

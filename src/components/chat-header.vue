@@ -4,17 +4,13 @@
     </div>
 </template>
 <script>
-    import io from "socket.io-client";
     export default {
-        name: 'header',
+        name: 'chatHeader',
+        props: ['socket'],
         data() {
             return {
-                socket: {},
                 count: 0
             }
-        },
-        created() {
-            this.socket = io(process.env.VUE_APP_SOCKET);
         },
         mounted() {
             this.socket.on("count", data => this.tally(data));
