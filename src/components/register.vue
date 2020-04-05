@@ -12,6 +12,7 @@
             return {
                 isError: false,
                 person: {
+                    id: '',
                     name: '',
                     color: ''
                 }
@@ -29,7 +30,17 @@
                     this.toggleAnimation();
                     return;
                 }
+                this.createId(10);
                 this.$emit('moveToHangout', this.person)
+            },
+            createId: function (length) {
+                let result           = '';
+                let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                let charactersLength = characters.length;
+                for ( let i = 0; i < length; i++ ) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+                this.person.id = result;
             }
         }
     }
