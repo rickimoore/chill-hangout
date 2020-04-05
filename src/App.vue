@@ -1,28 +1,37 @@
 <template>
   <div id="app">
-    <ChatBox v-bind:user="user" v-if="user" />
+    <GameRoom v-bind:user="user" v-bind:player="player" v-if="user" />
     <Register v-on:moveToHangout="setUser" v-if="!user"/>
   </div>
 </template>
 
 <script>
-import ChatBox from './components/chat'
+import GameRoom from './components/gameroom'
 import Register from './components/register'
+import {Howl} from "howler";
+import chill from "./assets/chill.mp3";
 
 export default {
   name: 'App',
   data () {
     return {
-      user: ''
+      user: '',
+      player: null
     }
   },
   components: {
-    ChatBox, Register
+    GameRoom, Register
   },
   methods: {
     setUser: function (data) {
       this.user = data;
     }
+  },
+  mounted() {
+    this.player = new Howl({
+      src: [chill],
+      preload: true
+    });
   }
 }
 </script>
